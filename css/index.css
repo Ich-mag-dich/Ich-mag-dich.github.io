@@ -1,0 +1,20 @@
+body {
+  background-color: rgb(201, 177, 255);
+}
+
+table {
+  border-color: black;
+  border-radius: 2px;
+  border-style: solid;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+th {
+  width: 100px;
+}
+
+canvas {
+  margin-left: 50px;
+  margin-top: 50px;
+}
