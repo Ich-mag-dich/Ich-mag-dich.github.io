@@ -1,9 +1,22 @@
 body {
-  background-color: rgb(201, 177, 255);
+  background-color: #2d2d2d;
+}
+
+#timedate {
+  font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+    "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  text-align: left;
+  width: 50%;
+  margin: 40px auto;
+  color: #fff;
+  border-left: 3px solid #ed1f24;
+  padding: 20px;
+  margin-left: 44%;
 }
 
 table {
-  border-color: black;
+  border-color: rgb(255, 255, 255);
+  color: #fff;
   border-radius: 2px;
   border-style: solid;
   margin: auto;
