@@ -27,4 +27,40 @@ Number.prototype.pad = function(n) {
   }
   
   // END CLOCK SCRIPT
+// watchStart = function () {
+//   startWatch = setInterval(function() {
+//       document.getElementById('sts').innerHTML++;
+//   }, 1000)
+// }
 
+function watchStart() {
+  if (document.getElementById('button').innerHTML === 'Start') {
+    document.getElementById('button').innerHTML = 'Stop';
+    startWatch = setInterval(function() {
+      if (document.getElementById('sts').innerHTML >= 59) {
+        if (document.getElementById('stm').innerHTML >= 59) {
+          document.getElementById('stm').innerHTML = 0;
+          document.getElementById('sts').innerHTML = 0;
+          document.getElementById('sth').innerHTML++;
+        } else {
+          document.getElementById('sts').innerHTML = 0;
+          document.getElementById('stm').innerHTML++;
+        }
+        
+      } else {
+        document.getElementById('sts').innerHTML++;
+      }
+    }, 1000);
+  } else {
+    document.getElementById('button').innerHTML = 'Start';
+    clearInterval(startWatch);
+    
+  }
+}
+function watchClear() {
+  document.getElementById('button').innerHTML = 'Start';
+  document.getElementById('sts').innerHTML = 0;
+  document.getElementById('stm').innerHTML = 0;
+  document.getElementById('sth').innerHTML = 0;
+  clearInterval(startWatch);
+}
