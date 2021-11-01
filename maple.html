@@ -4,12 +4,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/maple.css">
   <title>Ich-mag-dich</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery.min.js"></script> -->
   <link rel="shortcut icon" href="./img/heart.ico" />
-  <script type="text/javascript" src="./js/maplejs"></script>
+  <script type="text/javascript" src="./js/maple.js"></script>
 </head>
 <body>
-    
-    
+    <div id='inputName'>
+        <label for="fname">캐릭터명: </label>
+        <input type="text" id="fname" name="fname">
+    </div>
+    <div id='imgDiv'>
+        <img id='charImg' alt="메이플 증명사진!">
+    </div>
+    <div id='inputButton'>
 
+   
+        <button id='button' onclick="getCharImg()">불러오기</button>
+    </div>
 </body>
 </html>

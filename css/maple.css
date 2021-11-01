@@ -1,0 +1,31 @@
+#inputName {
+  text-align: center;
+  margin-top: 100px;
+}
+#imgDiv {
+  text-align: center;
+  margin-top: 50px;
+}
+#inputButton {
+  text-align: center;
+}
+#charImg {
+  text-align: center;
+  display: none;
+}
+#button {
+  text-align: center;
+  margin-top: 50px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: 0.4s;
+  background-color: #686868;
+}
+
+#button:hover {
+  background-color: #000000;
+  color: white;
+}
