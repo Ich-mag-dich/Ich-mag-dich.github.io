@@ -3,17 +3,40 @@
   margin-top: 100px;
 }
 #imgDiv {
-  text-align: center;
   margin-top: 50px;
+
+  /* margin-left: 38%; */
 }
 #inputButton {
   text-align: center;
+  margin-top: 450px;
 }
+
 #charImg {
+  vertical-align: middle;
   text-align: center;
+  /* margin-left: 40px;
+  text-align: center; */
   display: none;
+  width: auto;
+  margin: 0 auto;
+}
+#imgInputdiv {
+  margin-top: 20px;
+  text-align: center;
 }
 #button {
+  text-align: center;
+  margin-top: 50px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: 0.4s;
+  background-color: #686868;
+}
+#button1 {
   text-align: center;
   margin-top: 50px;
   border: none;
