@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="./css/maple.css" />
     <title>Ich-mag-dich</title>
     <script type="text/javascript" src="./js/mapletest.js"></script>
-
     <link rel="shortcut icon" href="./img/heart.ico" />
   </head>
   <body>
@@ -13,6 +12,7 @@
       <label for="fname">캐릭터명: </label>
       <input type="text" id="fname" name="fname" />
     </div>
+    <div data-stretch="http://i.imgur.com/4FEk2th.jpg"></div>
     <div
       id="imgDiv"
       style="position: relative; text-align: center; margin: 0 auto"
@@ -27,9 +27,9 @@
     </div>
     <div id="inputButton">
       <button id="button" onclick="ggcharImg()">불러오기</button>
-      <button id="button1" onclick="">저장하기</button>
+      <button id="button1" onclick="partShot()">저장하기</button>
     </div>
-    <div id="imgInputdiv">
+    <div id="imgInputdiv" style="background-color: #535353">
       배경 이미지 불러오기
       <input
         type="file"
@@ -37,6 +37,59 @@
         onclick="checkchar()"
         onchange="finput(event)"
       />
+    </div>
+    <div id="notice" style="text-align: center; background-color: #535353">
+      키보드로 배경이미지의 위치를 조정하세요
+    </div>
+    <div class="w3-col colorthird1" style="text-align: center">
+      <div style="margin: auto; width: 236px">
+        <div id="bodyColor" style="color: white">
+          배경 색
+          <input
+            type="color"
+            id="colorPick"
+            onchange="backColorChn(document.getElementById('colorPick').value)"
+            value="#535353"
+            style="width: 85%"
+          />
+        </div>
+        <div id="textColor" style="color: white">
+          글자 색
+          <input
+            type="color"
+            id="textcolorPick"
+            onchange="textColorChn(document.getElementById('textcolorPick').value)"
+            value="#535353"
+            style="width: 85%"
+          />
+        </div>
+        <div id="textColor" style="color: white">
+          글자 색2
+          <input
+            type="color"
+            id="textcolorPick2"
+            onchange="textColorChn2(document.getElementById('textcolorPick2').value)"
+            value="#535353"
+            style="width: 85%"
+          />
+        </div>
+        <div id="textColor" style="color: white">
+          글자 색3
+          <input
+            type="color"
+            id="textcolorPick3"
+            onchange="textColorChn3(document.getElementById('textcolorPick3').value)"
+            value="#535353"
+            style="width: 85%"
+          />
+        </div>
+        <br />
+        <br />
+      </div>
+    </div>
+    <div style="text-align: center; color: white">
+      Character card from
+      <a href="https://maple.gg/" style="color: white">https://maple.gg/</a>
     </div>
   </body>
   <script
@@ -46,6 +99,15 @@
   ></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"
+    integrity="sha512-vRqhAr2wsn+/cSsyz80psBbCcqzz2GTuhGk3bq3dAyytz4J/8XwFqMjiAGFBj+WM95lHBJ9cDf87T3P8yMrY7A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
   <script type="text/javascript" src="./js/maple.js"></script>
 </html>

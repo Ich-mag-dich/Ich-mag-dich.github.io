@@ -1,6 +1,14 @@
 body {
   background-color: #535353;
 }
+#bodyColor {
+  margin-top: 20px;
+}
+#notice {
+  margin-top: 10px;
+  color: #ffffff;
+  background-color: #535353;
+}
 #inputName {
   text-align: center;
   margin-top: 100px;
@@ -10,7 +18,7 @@ body {
 }
 #inputButton {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 #charImg {
@@ -23,6 +31,7 @@ body {
 #imgInputdiv {
   margin-top: 20px;
   text-align: center;
+  color: #ffffff;
 }
 #button {
   text-align: center;
