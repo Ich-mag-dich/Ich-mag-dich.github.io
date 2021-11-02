@@ -1,22 +1,21 @@
+body {
+  background-color: #535353;
+}
 #inputName {
   text-align: center;
   margin-top: 100px;
 }
 #imgDiv {
   margin-top: 50px;
-
-  /* margin-left: 38%; */
 }
 #inputButton {
   text-align: center;
-  margin-top: 450px;
+  margin-top: 50px;
 }
 
 #charImg {
   vertical-align: middle;
   text-align: center;
-  /* margin-left: 40px;
-  text-align: center; */
   display: none;
   width: auto;
   margin: 0 auto;
@@ -51,4 +50,93 @@
 #button:hover {
   background-color: #000000;
   color: white;
+}
+
+.character-card {
+  position: relative;
+  width: 304px;
+  height: 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+.character-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.character-card-footer {
+  width: 304px;
+  margin: 0 auto;
+}
+.character-card-image {
+  position: absolute;
+  left: 50%;
+  margin-left: -84px;
+  top: 48px;
+  width: 168px;
+  height: 168px;
+}
+.character-card-content {
+  padding-top: 228px;
+}
+.character-card-name {
+  margin-bottom: 4px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+.character-card-summary {
+  margin: 0 0 4px;
+  padding: 0;
+  font-size: 0;
+}
+.character-card-summary-item {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-size: 14px;
+}
+.character-card-summary-line {
+  display: inline-block;
+  width: 1px;
+  height: 8px;
+  margin: 0 8px;
+  background-color: #fff;
+}
+.character-card-popular {
+  margin-bottom: 4px;
+  color: #cdad80;
+  font-size: 12px;
+  line-height: 18px;
+}
+.character-card-popular b {
+  color: #ffe3bd;
+}
+.character-card-guild {
+  color: #cdad80;
+  font-size: 14px;
+  line-height: 20px;
+}
+.character-card-guild b {
+  color: #ffe3bd;
+}
+.character-card-additional {
+  padding: 0 12px;
+  margin: 0;
+  font-size: 0;
+}
+.character-card-additional-item {
+  display: inline-block;
+  width: 33.3333%;
+  color: #cdad80;
+  font-size: 13px;
+  line-height: 15px;
+  vertical-align: top;
+}
+.character-card-additional-item b {
+  display: block;
+  margin-bottom: 4px;
+  color: #ffe3bd;
 }

@@ -1,50 +1,51 @@
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/maple.css">
-  <title>Ich-mag-dich</title>
-  
-  
-  <!-- <script src="https://code.jquery.com/jquery.min.js"></script> -->
-  <link rel="shortcut icon" href="./img/heart.ico" />
-  
-</head>
-<body>
-    <div id='inputName'>
-        <label for="fname">캐릭터명: </label>
-        <input type="text" id="fname" name="fname">
-    </div>
-    <div id='imgDiv' style="position: relative; text-align:center; margin:0 auto;">
-        <div id='charbackdiv'>
-            <img id='charBackground' src='./img/background.png' style=" position: absolute; margin: 0 auto;">
-            <div id='charname' style="position: absolute; margin: 0 auto;">name</div>
-        </div>
-        <!-- <img id='charBackground' src='./img/background.png' style=" position: absolute; margin: 0 auto;"> -->
-        <img id='charImg' alt="메이플 증명사진!" style="position: absolute;">
-        <div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/maple.css" />
+    <title>Ich-mag-dich</title>
+    <script type="text/javascript" src="./js/mapletest.js"></script>
 
-        </div>
+    <link rel="shortcut icon" href="./img/heart.ico" />
+  </head>
+  <body>
+    <div id="inputName">
+      <label for="fname">캐릭터명: </label>
+      <input type="text" id="fname" name="fname" />
     </div>
-    <div id='inputButton'>
-        <button id='button' onclick="getCharImg()">불러오기</button>
-        <button id='button1' onclick="">저장하기</button>
+    <div
+      id="imgDiv"
+      style="position: relative; text-align: center; margin: 0 auto"
+    >
+      <!-- <div id='charbackdiv'>
+            <img id='charBackground' src='./img/background.png' style=" position: absolute; margin: 0 auto;">
+            
+        </div>
+        <img id='charBackground' src='./img/background.png' style=" position: absolute; margin: 0 auto;">
+        <img id='charImg' alt="메이플 증명사진!" style="position: absolute;">
+         -->
+    </div>
+    <div id="inputButton">
+      <button id="button" onclick="ggcharImg()">불러오기</button>
+      <button id="button1" onclick="">저장하기</button>
     </div>
     <div id="imgInputdiv">
-        배경 이미지 불러오기 <input type="file" id="fileInput" >
+      배경 이미지 불러오기
+      <input
+        type="file"
+        id="fileInput"
+        onclick="checkchar()"
+        onchange="finput(event)"
+      />
     </div>
-   
-</body>
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"
-  integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"></script> -->
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"
+  ></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
   <script type="text/javascript" src="./js/maple.js"></script>
 </html>
