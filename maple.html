@@ -6,17 +6,20 @@
     <title>Ich-mag-dich</title>
     <script type="text/javascript" src="./js/mapletest.js"></script>
     <link rel="shortcut icon" href="./img/heart.ico" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
   <body>
     <div id="inputName">
       <label for="fname" style="color: white">캐릭터명: </label>
       <input type="text" id="fname" name="fname" />
     </div>
-    <div data-stretch="http://i.imgur.com/4FEk2th.jpg"></div>
     <div
       id="imgDiv"
       style="position: relative; text-align: center; margin: 0 auto"
     >
+    <div id="character-card" class="character-card">
+      <img class="character-background1" src="./img/bg.png" crossorigin='anonymous'></div>
+    </div>
       <!-- <div id='charbackdiv'>
             <img id='charBackground' src='./img/background.png' style=" position: absolute; margin: 0 auto;">
             
@@ -96,7 +99,6 @@
     crossorigin="anonymous"
   ></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script
     type="text/javascript"
     src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"

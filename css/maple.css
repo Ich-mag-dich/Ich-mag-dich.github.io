@@ -149,3 +149,12 @@ body {
   margin-bottom: 4px;
   color: #ffe3bd;
 }
+
+.character-background1 {
+  position: absolute;
+  width: 304px;
+  height: 440px;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}

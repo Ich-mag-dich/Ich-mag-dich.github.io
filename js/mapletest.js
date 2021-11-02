@@ -1,5 +1,5 @@
 function ggcharImg() {
-  if (document.querySelector("#character-card") == null) {
+  if (document.querySelector("#character-card") != null) {
     var charName = document.getElementById("fname");
 
     if (charName.value == "" || charName.value == null) {
@@ -33,7 +33,14 @@ function ggcharImg() {
           getgg.querySelector(
             "#character-card > img.character-background"
           ).style.left = 0;
-          $("#imgDiv").append(getgg);
+          $("#character-card").append(
+            el.querySelector("#character-card > img.character-background")
+          );
+          $("#character-card").append(el.querySelector("#character-avatar"));
+          $("#character-card").append(
+            el.querySelector("#character-card > div")
+          );
+          //apech();
         } else {
           alert("errer");
         }
@@ -56,6 +63,14 @@ function finput(e) {
     document.querySelector("#character-card > img.character-background").src =
       reader.result;
   };
+}
+function apech() {
+  //   bgi = document.createElement("img");
+  //   bgi.classList.add("character-background1");
+  //   bgi.src = "./img/bg.png";
+  //   bgi.crossorigin = "anonymous";
+  //   document.querySelector("#character-card").append(bgi);
+  //document.querySelector("#character-avatar").src = "";
 }
 function finput2(e) {
   var file = e.target.files[0]; //선택된 파일
@@ -170,17 +185,14 @@ function textColorChn3(e) {
 function partShot() {
   //특정부분 스크린샷
   html2canvas(document.getElementById("character-card"), {
-    proxy: "html2canvas-proxy",
     useCORS: true,
+    //proxy: "./js/server.js",
+    allowTaint: true,
   })
     //id container 부분만 스크린샷
     .then(function (canvas) {
-      var ctx = canvas.getContext("2d");
-      var myImage = document.querySelector("#character-avatar").src;
-      addToCanvas(ctx, myImage);
       //jpg 결과값
       //이미지 저장
-      //document.body.appendChild(canvas);
       saveAs(
         canvas.toDataURL(),
         `${document.getElementById("fname").value}.jpg`
@@ -202,12 +214,4 @@ function saveAs(uri, filename) {
   } else {
     window.open(uri);
   }
-}
-
-function addToCanvas(ctx, image, x, y) {
-  var img = new Image();
-  img.src = image;
-  img.onload = function () {
-    ctx.drawImage(img, x, y);
-  };
 }
