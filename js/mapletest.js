@@ -102,23 +102,23 @@ window.onkeydown = event => {
     if (charName.value != "" || charName.value != null) {
       ggcharImg();
     }
-  } else if (event.keyCode == 37) {
+  } else if (event.keyCode == 37 || event.keyCode == 65) {
     //왼쪽
     if (backname != null) {
       backname.style.left = backname.style.left.replace("px", "") - 1 + "px";
     }
-  } else if (event.keyCode == 39) {
+  } else if (event.keyCode == 39 || event.keyCode == 68) {
     // 오른쪽
     if (backname != null) {
       backname.style.left =
         (backname.style.left.replace("px", "") * -1 - 1) * -1 + "px";
     }
-  } else if (event.keyCode == 38) {
+  } else if (event.keyCode == 38 || event.keyCode == 87) {
     //위
     if (backname != null) {
       backname.style.top = backname.style.top.replace("px", "") - 1 + "px";
     }
-  } else if (event.keyCode == 40) {
+  } else if (event.keyCode == 40 || event.keyCode == 83) {
     //아래
     if (backname != null) {
       backname.style.top =
