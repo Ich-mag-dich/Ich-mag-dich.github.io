@@ -15,18 +15,19 @@ function ggcharImg() {
         var el = document.createElement("html");
         el.innerHTML = xmlHttp.responseText;
         var getgg = el.querySelector("#character-card");
-        $("#imgDiv").append(getgg);
-        if (
-          document.querySelector(
-            "#character-card > div > ul.character-card-summary > li:nth-child(1) > span"
-          ) == 베라
-        ) {
-          server =
-            "https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_12.png";
-        }
-        document.querySelector(
+        getgg.querySelector(
           "#character-card > div > ul.character-card-summary > li:nth-child(1) > img"
-        ).src = server;
+        ).src = "";
+
+        getgg.querySelector("#character-card > img.character-background").src =
+          "";
+        getgg.querySelector(
+          "#character-card > img.character-background"
+        ).style.top = 0;
+        getgg.querySelector(
+          "#character-card > img.character-background"
+        ).style.left = 0;
+        $("#imgDiv").append(getgg);
       } else {
         alert("errer");
       }
@@ -73,18 +74,31 @@ window.onkeydown = event => {
       ggcharImg();
     }
   } else if (event.keyCode == 37) {
+    //왼쪽
     if (backname != null) {
+      console.log(
+        document.querySelector("#character-card > img.character-background")
+          .style.left
+      );
+      backname.style.left = backname.style.left.replace("px", "") - 1 + "px";
+    }
+  } else if (event.keyCode == 39) {
+    // 오른쪽
+    if (backname != null) {
+      backname.style.left =
+        (backname.style.left.replace("px", "") * -1 - 1) * -1 + "px";
+    }
+  } else if (event.keyCode == 38) {
+    //위
+    if (backname != null) {
+      backname.style.top = backname.style.top.replace("px", "") - 1 + "px";
+    }
+  } else if (event.keyCode == 40) {
+    //아래
+    if (backname != null) {
+      backname.style.top =
+        (backname.style.top.replace("px", "") * -1 - 1) * -1 + "px";
     }
   }
   //console.log(event.keyCode);
 };
-
-$(function () {
-  $("#character-card-content").draggable();
-});
-$(function () {
-  $("#character-card").draggable();
-});
-$(function () {
-  $("#character-avatar").draggable();
-});
