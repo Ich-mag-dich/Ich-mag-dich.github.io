@@ -1,47 +1,52 @@
 function ggcharImg() {
-  var charName = document.getElementById("fname");
+  if (document.querySelector("#character-card") == null) {
+    var charName = document.getElementById("fname");
 
-  if (charName.value == "" || charName.value == null) {
-    alert("이름을 입력해주세요");
-    return false;
-  }
-  var xmlHttp = new XMLHttpRequest();
-
-  xmlHttp.onreadystatechange = function () {
-    if (xmlHttp.readyState === xmlHttp.DONE) {
-      if (xmlHttp.status === 200) {
-        console.log(xmlHttp.status);
-        //console.log(xmlHttp.responseText);
-        var el = document.createElement("html");
-        el.innerHTML = xmlHttp.responseText;
-        var getgg = el.querySelector("#character-card");
-        //getgg.style.backgroundColor = "#535353";
-        getgg.querySelector(
-          "#character-card > div > ul.character-card-summary > li:nth-child(1) > img"
-        ).src = "";
-        var charsrc = getgg.querySelector("#character-avatar").src;
-        getgg.querySelector("#character-card > img.character-background").src =
-          "";
-        getgg.querySelector(
-          "#character-card > img.character-background"
-        ).style.top = 0;
-        getgg.querySelector(
-          "#character-card > img.character-background"
-        ).style.left = 0;
-        $("#imgDiv").append(getgg);
-      } else {
-        alert("errer");
-      }
+    if (charName.value == "" || charName.value == null) {
+      alert("이름을 입력해주세요");
+      return false;
     }
-  };
-  xmlHttp.open(
-    "GET",
-    `https://cors-anywhere.herokuapp.com/http://maple.gg/u/${charName.value}`
-  );
-  xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-  xmlHttp.send(null);
-}
+    var xmlHttp = new XMLHttpRequest();
 
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === xmlHttp.DONE) {
+        if (xmlHttp.status === 200) {
+          console.log(xmlHttp.status);
+          //console.log(xmlHttp.responseText);
+          var el = document.createElement("html");
+          el.innerHTML = xmlHttp.responseText;
+          var getgg = el.querySelector("#character-card");
+          //getgg.style.backgroundColor = "#535353";
+
+          getgg.querySelector("#character-avatar").src = "";
+          getgg.querySelector("#character-avatar").onerror = "";
+          getgg.querySelector(
+            "#character-card > div > ul.character-card-summary > li:nth-child(1) > img"
+          ).src = "";
+          var charsrc = getgg.querySelector("#character-avatar").src;
+          getgg.querySelector(
+            "#character-card > img.character-background"
+          ).src = "";
+          getgg.querySelector(
+            "#character-card > img.character-background"
+          ).style.top = 0;
+          getgg.querySelector(
+            "#character-card > img.character-background"
+          ).style.left = 0;
+          $("#imgDiv").append(getgg);
+        } else {
+          alert("errer");
+        }
+      }
+    };
+    xmlHttp.open(
+      "GET",
+      `https://cors-anywhere.herokuapp.com/http://maple.gg/u/${charName.value}`
+    );
+    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xmlHttp.send(null);
+  }
+}
 //값이 변경될때 호출 되는 이벤트 리스너
 function finput(e) {
   var file = e.target.files[0]; //선택된 파일
@@ -50,6 +55,14 @@ function finput(e) {
   reader.onload = function () {
     document.querySelector("#character-card > img.character-background").src =
       reader.result;
+  };
+}
+function finput2(e) {
+  var file = e.target.files[0]; //선택된 파일
+  var reader = new FileReader();
+  reader.readAsDataURL(file); //파일을 읽는 메서드
+  reader.onload = function () {
+    document.querySelector("#character-avatar").src = reader.result;
   };
 }
 
@@ -66,10 +79,6 @@ window.onkeydown = event => {
   } else if (event.keyCode == 37) {
     //왼쪽
     if (backname != null) {
-      console.log(
-        document.querySelector("#character-card > img.character-background")
-          .style.left
-      );
       backname.style.left = backname.style.left.replace("px", "") - 1 + "px";
     }
   } else if (event.keyCode == 39) {
@@ -98,9 +107,7 @@ function backColorChn(e) {
   document.querySelector("#imgInputdiv").style.backgroundColor = e;
   document.querySelector("#notice").style.backgroundColor = e;
   if (document.querySelector("#character-card") != null) {
-    document.querySelector(
-      "#character-card > img.character-background"
-    ).style.backgroundColor = e;
+    document.querySelector("#character-card").style.backgroundColor = e;
   }
 }
 
@@ -173,7 +180,7 @@ function partShot() {
       addToCanvas(ctx, myImage);
       //jpg 결과값
       //이미지 저장
-      document.body.appendChild(canvas);
+      //document.body.appendChild(canvas);
       saveAs(
         canvas.toDataURL(),
         `${document.getElementById("fname").value}.jpg`

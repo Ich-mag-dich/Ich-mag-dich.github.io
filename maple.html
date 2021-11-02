@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="inputName">
-      <label for="fname">캐릭터명: </label>
+      <label for="fname" style="color: white">캐릭터명: </label>
       <input type="text" id="fname" name="fname" />
     </div>
     <div data-stretch="http://i.imgur.com/4FEk2th.jpg"></div>
@@ -30,13 +30,11 @@
       <button id="button1" onclick="partShot()">저장하기</button>
     </div>
     <div id="imgInputdiv" style="background-color: #535353">
+      캐릭터 이름을 입력해 불러온 후 하단의 이미지들을 불러와주세요<br />
       배경 이미지 불러오기
-      <input
-        type="file"
-        id="fileInput"
-        onclick="checkchar()"
-        onchange="finput(event)"
-      />
+      <input type="file" id="fileInput" onchange="finput(event)" /><br />
+      캐릭터 이미지 불러오기
+      <input type="file" id="fileInput" onchange="finput2(event)" />
     </div>
     <div id="notice" style="text-align: center; background-color: #535353">
       키보드로 배경이미지의 위치를 조정하세요
@@ -44,7 +42,7 @@
     <div class="w3-col colorthird1" style="text-align: center">
       <div style="margin: auto; width: 236px">
         <div id="bodyColor" style="color: white">
-          배경 색
+          배경 색(배경 색은 배경 이미지의 위치를 지정한뒤 설정해주세요)
           <input
             type="color"
             id="colorPick"
