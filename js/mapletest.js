@@ -48,7 +48,7 @@ function ggcharImg() {
     };
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/http://maple.gg/u/${charName.value}`
+      `https://cors-anywhere.herokuapp.com/https://maple.gg/u/${charName.value}`
     );
     xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlHttp.send(null);
