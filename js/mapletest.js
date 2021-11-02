@@ -183,6 +183,7 @@ function textColorChn3(e) {
 }
 
 function partShot() {
+  //test
   //특정부분 스크린샷
   html2canvas(document.getElementById("character-card"), {
     useCORS: true,
