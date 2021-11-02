@@ -80,6 +80,17 @@ function finput2(e) {
     document.querySelector("#character-avatar").src = reader.result;
   };
 }
+function finput3(e) {
+  var file = e.target.files[0]; //선택된 파일
+  var reader = new FileReader();
+  reader.readAsDataURL(file); //파일을 읽는 메서드
+  var createbgimg = document.createElement("img");
+  createbgimg.className = "character-background1";
+  document.querySelector("#character-card").appendChild(createbgimg);
+  reader.onload = function () {
+    document.querySelector(".character-background1").src = reader.result;
+  };
+}
 
 // 위 = 38 아래 = 40 오른쪽 = 39 왼쪽 = 37 엔터 = 13
 window.onkeydown = event => {
@@ -127,10 +138,6 @@ function backColorChn(e) {
 }
 
 function textColorChn(e) {
-  document.querySelector("#textColor").style.color = e;
-  document.querySelector("#bodyColor").style.color = e;
-  document.querySelector("#notice").style.color = e;
-  document.querySelector("#imgInputdiv").style.color = e;
   document.querySelector(".character-card-name").style.color = e;
   document.querySelector(".character-card-summary-item").style.color = e;
   document.querySelector(

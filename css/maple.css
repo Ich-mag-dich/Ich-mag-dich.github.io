@@ -55,6 +55,17 @@ body {
   transition-duration: 0.4s;
   background-color: #686868;
 }
+#button2 {
+  text-align: center;
+  margin-top: 50px;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  cursor: pointer;
+  display: inline-block;
+  transition-duration: 0.4s;
+  background-color: #686868;
+}
 
 #button:hover {
   background-color: #000000;
