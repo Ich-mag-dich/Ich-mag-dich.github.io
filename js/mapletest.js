@@ -42,7 +42,7 @@ function ggcharImg() {
           );
           //apech();
         } else {
-          alert("errer");
+          alert("error");
         }
       }
     };
