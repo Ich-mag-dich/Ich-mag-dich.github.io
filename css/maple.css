@@ -15,6 +15,7 @@ body {
 }
 #imgDiv {
   margin-top: 50px;
+  z-index: -2;
 }
 #inputButton {
   text-align: center;
@@ -84,7 +85,18 @@ body {
   width: 343px;
   height: 500px;
 }
+.character-frame {
+  position: absolute;
+  width: 304px;
+  height: 440px;
+  top: 10px;
+  text-shadow: 1px 1px 1px #000;
 
+  left: 8px;
+  z-index: -1;
+  width: 327px;
+  height: 481px;
+}
 .character-background1 {
   position: absolute;
   width: 304px;
@@ -112,12 +124,12 @@ body {
 }
 .character-card-image {
   position: absolute;
-  left: 50%;
-  top: 56px;
+  left: 52%;
+  top: 11px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  width: 168px;
-  height: 168px;
+  width: 250px;
+  height: 250px;
 }
 .character-card-content {
   padding-top: 260px;
@@ -191,7 +203,7 @@ body {
   line-height: 16px;
 }
 .character-card-additional-item span {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 16px;
 }
 .character-card-additional-item small {

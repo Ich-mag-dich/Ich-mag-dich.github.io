@@ -17,6 +17,7 @@ function ggcharImg() {
           el.innerHTML = xmlHttp.responseText;
           var getgg = el.querySelector("#character-card");
           //getgg.style.backgroundColor = "#535353";
+          el.querySelector("#character-card > img.character-frame").src = "";
           getgg.querySelector(".character-frame").src = "";
           getgg.querySelector("#character-avatar").src = "";
           getgg.querySelector("#character-avatar").onerror = "";
@@ -54,6 +55,386 @@ function ggcharImg() {
     xmlHttp.send(null);
   }
 }
+
+function theseed() {
+  if (document.querySelector("#character-card") != null) {
+    var charName = document.getElementById("fname");
+    //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.search_com_chk > td:nth-child(3)")
+    if (charName.value == "" || charName.value == null) {
+      alert("이름을 입력해주세요");
+      return false;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === xmlHttp.DONE) {
+        if (xmlHttp.status === 200) {
+          console.log(xmlHttp.status);
+          var el = document.createElement("html");
+          el.innerHTML = xmlHttp.responseText;
+          try {
+            for (i = 1; i <= 10; i++) {
+              if (
+                el.querySelector(
+                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td.left > dl > dt > a`
+                ).innerText == charName.value
+              ) {
+                document.querySelector(
+                  "#character-card > div > ul.character-card-additional > li:nth-child(3) > span"
+                ).innerText =
+                  el.querySelector(
+                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(4)`
+                  ).innerText + "층";
+                document.querySelector(
+                  "#character-card > div > ul.character-card-additional > li:nth-child(3) > small"
+                ).innerText = el.querySelector(
+                  "#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(4) > td:nth-child(5)"
+                ).innerText;
+              }
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      }
+    };
+    xmlHttp.open(
+      "GET",
+      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Seed/ThisWeek?c=${charName.value}&w=0`
+    );
+    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xmlHttp.send(null);
+  }
+}
+
+function unionlevelcalc(level) {
+  if (level >= 10000) {
+    return "그랜드마스터 V";
+  } else if (level >= 9500) {
+    return "그랜드마스터 IV";
+  } else if (level >= 9000) {
+    return "그랜드마스터 III";
+  } else if (level >= 8500) {
+    return "그랜드마스터 II";
+  } else if (level >= 8000) {
+    return "그랜드마스터 I";
+  } else if (level >= 7500) {
+    return "마스터 V";
+  } else if (level >= 7000) {
+    return "마스터 IV";
+  } else if (level >= 6500) {
+    return "마스터 III";
+  } else if (level >= 6000) {
+    return "마스터 II";
+  } else if (level >= 5500) {
+    return "마스터 I";
+  } else if (level >= 5000) {
+    return "베테랑 V";
+  } else if (level >= 4500) {
+    return "베테랑 IV";
+  } else if (level >= 4000) {
+    return "베테랑 III";
+  } else if (level >= 3500) {
+    return "베테랑 II";
+  } else if (level >= 3000) {
+    return "베테랑 I";
+  } else if (level >= 2500) {
+    return "노비스 V";
+  } else if (level >= 2000) {
+    return "노비스 IV";
+  } else if (level >= 1500) {
+    return "노비스 III";
+  } else if (level >= 1000) {
+    return "노비스 II";
+  } else if (level >= 500) {
+    return "노비스 I";
+  }
+}
+
+function charunion() {
+  if (document.querySelector("#character-card") != null) {
+    var charName = document.getElementById("fname");
+    //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.search_com_chk > td:nth-child(3)")
+    if (charName.value == "" || charName.value == null) {
+      alert("이름을 입력해주세요");
+      return false;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === xmlHttp.DONE) {
+        if (xmlHttp.status === 200) {
+          console.log(xmlHttp.status);
+          var el = document.createElement("html");
+          el.innerHTML = xmlHttp.responseText;
+          try {
+            for (i = 1; i <= 10; i++) {
+              var charuname = el.querySelector(
+                `#container > div > div > div:nth-child(4) > table > tbody > tr:nth-child(${i}) > td.left > dl > dt > a`
+              ).innerText;
+              if (charuname == charName.value) {
+                var unionlevel = el.querySelector(
+                  `#container > div > div > div:nth-child(4) > table > tbody > tr:nth-child(${i}) > td:nth-child(3)`
+                ).innerText;
+                unionlevel = unionlevel.replace(",", "");
+                document.querySelector(
+                  "#character-card > div > ul.character-card-additional > li:nth-child(2) > span"
+                ).innerText = unionlevelcalc(unionlevel);
+                document.querySelector(
+                  "#character-card > div > ul.character-card-additional > li:nth-child(2) > small"
+                ).innerText = "Lv." + unionlevel;
+              }
+            }
+          } catch (e) {
+            console.log(e);
+          }
+          theseed();
+        }
+      }
+    };
+    xmlHttp.open(
+      "GET",
+      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/Union?c=${charName.value}&w=0`
+    );
+    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xmlHttp.send(null);
+  }
+}
+
+function getguild(guildlink, charlevel) {
+  if (document.querySelector("#character-card") != null) {
+    var charName = document.getElementById("fname");
+    //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.search_com_chk > td:nth-child(3)")
+    if (charName.value == "" || charName.value == null) {
+      alert("이름을 입력해주세요");
+      return false;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === xmlHttp.DONE) {
+        if (xmlHttp.status === 200) {
+          console.log(xmlHttp.status);
+          var el = document.createElement("html");
+          el.innerHTML = xmlHttp.responseText;
+          try {
+            for (i = 1; i <= 10; i++) {
+              if (i <= 3) {
+                if (
+                  el.querySelector(
+                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.rank0${i} > td.left > dl > dt > a`
+                  ).innerText == charName.value
+                ) {
+                  var moofloor = el.querySelector(
+                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.rank0${i} > td:nth-child(4)`
+                  ).innerText;
+                  var mootime = el.querySelector(
+                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.rank0${i} > td:nth-child(5)`
+                  ).innerText;
+                  document.querySelector(
+                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
+                  ).innerText = moofloor;
+                  document.querySelector(
+                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
+                  ).innerText = mootime;
+                } else {
+                  var moofloor = el.querySelector(
+                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(4)`
+                  ).innerText;
+                  var mootime = el.querySelector(
+                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(5)`
+                  ).innerText;
+                  document.querySelector(
+                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
+                  ).innerText = moofloor + "층";
+                  document.querySelector(
+                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
+                  ).innerText = mootime;
+                }
+              }
+            }
+          } catch (e) {
+            console.log(e);
+            document.querySelector(
+              "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
+            ).innerText = "기록없음";
+          }
+          charunion();
+        }
+      }
+    };
+    charlevel = charlevel.replace("Lv.", "");
+    if (charlevel > 200) {
+      var moo =
+        "https://maplestory.nexon.com/Ranking/World/Dojang/ThisWeek?t=2";
+    } else {
+      var moo =
+        "https://maplestory.nexon.com/Ranking/World/Dojang/ThisWeek?t=0";
+    }
+    xmlHttp.open(
+      "GET",
+      `https://cors-anywhere.herokuapp.com/${moo}&c=${charName.value}&w=0`
+    );
+    console.log(charlevel);
+    console.log(`${moo}&c=${charName.value}&w=0`);
+    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xmlHttp.send(null);
+  }
+}
+
+function getcharaterinfo(charinfo, charlevel) {
+  if (document.querySelector("#character-card") != null) {
+    var charName = document.getElementById("fname");
+    //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.search_com_chk > td:nth-child(3)")
+    if (charName.value == "" || charName.value == null) {
+      alert("이름을 입력해주세요");
+      return false;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === xmlHttp.DONE) {
+        if (xmlHttp.status === 200) {
+          console.log(xmlHttp.status);
+          var el = document.createElement("html");
+          el.innerHTML = xmlHttp.responseText;
+          var charpop = el.querySelector(
+            "#wrap > div.center_wrap > div.char_info_top > div.char_info > div.level_data > span.pop_data"
+          ).innerText;
+          charpop = charpop.replace("인기도", "");
+          document.querySelector(
+            "#character-card > div > div:nth-child(3) > d"
+          ).innerText = charpop;
+          var charservername = el.querySelector(
+            "#wrap > div.center_wrap > div.char_info_top > div.char_info > dl:nth-child(3) > dd"
+          ).innerText;
+          document.querySelector(
+            "#character-card > div > ul.character-card-summary > li:nth-child(1) > span"
+          ).innerText = charservername;
+          var guildlink = el.querySelector(
+            "#container > div.con_wrap > div.lnb_wrap > ul > li.on > a"
+          ).href;
+          guildlink = guildlink.replace("file:///D:", "");
+          getguild(guildlink, charlevel);
+        }
+      }
+    };
+    xmlHttp.open(
+      "GET",
+      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com${charinfo}`
+    );
+    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xmlHttp.send(null);
+  }
+}
+
+//document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(5) > td:nth-child(3)")
+//document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(1) > td.left > dl > dd")
+function getcharacter() {
+  if (document.querySelector("#character-card") != null) {
+    var charName = document.getElementById("fname");
+    //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(5) > td.left > dl > dt > a")
+    if (charName.value == "" || charName.value == null) {
+      alert("이름을 입력해주세요");
+      return false;
+    }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+      if (xmlHttp.readyState === xmlHttp.DONE) {
+        if (xmlHttp.status === 200) {
+          console.log(xmlHttp.status);
+          //console.log(xmlHttp.responseText);
+          var el = document.createElement("html");
+          el.innerHTML = xmlHttp.responseText;
+          document.querySelector(
+            "#character-card > div > div.character-card-name"
+          ).innerText = charName.value;
+          for (i = 1; i <= 10; i++) {
+            var forname = el.querySelector(
+              `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td.left > dl > dt > a`
+            );
+            if (forname.innerText == charName.value) {
+              var charNum = i;
+              var charclass = el.querySelector(
+                `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > dl > dd`
+              ).innerText;
+              var charclass = charclass.split("/");
+              var charclassafter = charclass[1];
+              document.querySelector(
+                "#character-card > div > ul.character-card-summary > li:nth-child(5) > span"
+              ).innerText = charclassafter;
+              var charlevel = el.querySelector(
+                `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td:nth-child(3)`
+              ).innerHTML;
+              document.querySelector(
+                "#character-card > div > ul.character-card-summary > li:nth-child(3) > span"
+              ).innerText = charlevel;
+              var getcharserverimg = el.querySelector(
+                `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > dl > dt > a > img`
+              ).src;
+              document.querySelector(
+                "#character-card > div > ul.character-card-summary > li:nth-child(1) > img"
+              ).src = getcharserverimg;
+              var charinfo = el.querySelector(
+                `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > dl > dt > a`
+              ).href;
+              //var charserver =
+              var getcharImg = el.querySelector(
+                `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > span > img:nth-child(1)`
+              ).src;
+              var charguild = el.querySelector(
+                `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td:nth-child(6)`
+              ).innerText;
+              document.querySelector(
+                "#character-card > div > div:nth-child(3) > span"
+              ).innerText = charguild;
+              document.querySelector("#character-avatar").src = getcharImg;
+              var levelsnum = el.querySelector(
+                "#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(7) > td:nth-child(1) > p.\\'ranking_other\\'"
+              ).innerText;
+              levelsnum = levelsnum
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              levelsnum = levelsnum.replace(" ", "");
+              document.querySelector(
+                "#character-card > div > div:nth-child(4) > span:nth-child(2)"
+              ).innerText = `${levelsnum}등`;
+              document.querySelector(
+                "#character-card > div > div:nth-child(4) > span"
+              ).innerHTML = document
+                .querySelector(
+                  "#character-card > div > div:nth-child(4) > span"
+                )
+                .innerHTML.replace(
+                  "                                                   ",
+                  ""
+                );
+              document.querySelector(
+                "#character-card > div > div:nth-child(4) > span"
+              ).innerHTML = document
+                .querySelector(
+                  "#character-card > div > div:nth-child(4) > span"
+                )
+                .innerHTML.replace("<br>", "");
+              console.log(
+                document.querySelector(
+                  "#character-card > div > div:nth-child(4) > span"
+                ).innerHTML
+              );
+              charinfo = charinfo.replace("file:///D:", "");
+              console.log(charinfo);
+              getcharaterinfo(charinfo, charlevel);
+            }
+          }
+        }
+      }
+    };
+    xmlHttp.open(
+      "GET",
+      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=0`
+    );
+
+    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xmlHttp.send(null);
+  }
+}
+
 //값이 변경될때 호출 되는 이벤트 리스너
 function finput(e) {
   var file = e.target.files[0]; //선택된 파일
@@ -100,7 +481,7 @@ window.onkeydown = event => {
   if (event.keyCode == 13) {
     var charName = document.getElementById("fname");
     if (charName.value != "" || charName.value != null) {
-      ggcharImg();
+      getcharacter();
     }
   } else if (event.keyCode == 37 || event.keyCode == 65) {
     //왼쪽
@@ -152,9 +533,9 @@ function textColorChn2(e) {
   document.querySelector(
     "#character-card > div > div:nth-child(3) > b:nth-child(1)"
   ).style.color = e;
-  document.querySelector(
-    "#character-card > div > div:nth-child(3) > b:nth-child(2)"
-  ).style.color = e;
+  // document.querySelector(
+  //   "#character-card > div > div:nth-child(3) > b:nth-child(2)"
+  // ).style.color = e;
   document.querySelector(
     "#character-card > div > div:nth-child(4) > b"
   ).style.color = e;
@@ -166,6 +547,9 @@ function textColorChn2(e) {
   ).style.color = e;
   document.querySelector(
     "#character-card > div > ul.character-card-additional > li:nth-child(3) > b"
+  ).style.color = e;
+  document.querySelector(
+    "#character-card > div > div:nth-child(3) > b:nth-child(3)"
   ).style.color = e;
 }
 function textColorChn3(e) {
@@ -192,15 +576,31 @@ function textColorChn3(e) {
 function partShot() {
   //test
   //특정부분 스크린샷
+
+  // html2canvas(document.getElementById("character-card"), {
+  //   useCORS: true,
+  //   //proxy: "./js/server.js",
+  //   allowTaint: true,
+  // })
+  //   //id container 부분만 스크린샷
+  //   .then(function (canvas) {
+  //     //jpg 결과값
+  //     //이미지 저장
+  //     saveAs(
+  //       canvas.toDataURL(),
+  //       `${document.getElementById("fname").value}.jpg`
+  //     );
+  //   })
+  //   .catch(function (err) {
+  //     console.log(err);
+  //   });
   html2canvas(document.getElementById("character-card"), {
+    allowTaint: false,
     useCORS: true,
-    //proxy: "./js/server.js",
-    allowTaint: true,
   })
-    //id container 부분만 스크린샷
-    .then(function (canvas) {
-      //jpg 결과값
-      //이미지 저장
+    .then(canvas => {
+      document.body.appendChild(canvas);
+      console.log(url);
       saveAs(
         canvas.toDataURL(),
         `${document.getElementById("fname").value}.jpg`
@@ -222,4 +622,23 @@ function saveAs(uri, filename) {
   } else {
     window.open(uri);
   }
+}
+
+function saveimg() {
+  html2canvas($("#character-card")[0], {
+    allowTaint: true,
+    useCORS: true,
+    logging: true,
+    proxy: "html2canvasproxy.php",
+  })
+    .then(canvas => {
+      document.body.appendChild(canvas);
+      saveAs(
+        canvas.toDataURL("image/png"),
+        `${document.getElementById("fname").value}.jpg`
+      );
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
 }

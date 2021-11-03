@@ -16,12 +16,65 @@
     </div>
     <div
       id="imgDiv"
-      style="position: relative; text-align: center; margin: 0 auto;
-      background-color: rgb(209, 209, 209)"
+      style="
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+        background-color: rgb(209, 209, 209);
+      "
     >
       <div id="character-card" class="character-card">
+        <img class="character-frame" src="./img/character-frame.svg" />
+        <img class="character-background" src="" crossorigin="anonymous" />
+        <img
+          id="character-avatar"
+          class="character-card-image character-image"
+          onerror="this.src='';"
+        />
+        <div class="character-card-content">
+          <div class="character-card-name">이름</div>
+          <ul class="character-card-summary">
+            <li class="character-card-summary-item">
+              <img src="" style="vertical-align: middle" />
+              <span>서버</span>
+            </li>
+            <li class="character-card-summary-line"></li>
+            <li class="character-card-summary-item">
+              <span>레벨</span>
+            </li>
+            <li class="character-card-summary-line"></li>
+            <li class="character-card-summary-item">
+              <span>직업</span>
+            </li>
+          </ul>
+          <div class="character-card-popular">
+            <b>인기도</b> <d>0</d><b style="margin-left: 8px">길드</b>
+            <span>-</span>
+          </div>
 
-        <img class="character-background1"></div>
+          <div class="character-card-popular">
+            <b>랭킹</b>
+            <span></span>
+          </div>
+          <img src="./img/card-effect.svg" class="character-card-effect" />
+          <ul class="character-card-additional">
+            <li class="character-card-additional-item">
+              <b>금주 무릉도장</b>
+              <span>기록없음</span><br />
+              <small></small>
+            </li>
+            <li class="character-card-additional-item">
+              <b>유니온</b>
+              <span>기록없음</span><br />
+              <small></small>
+            </li>
+            <li class="character-card-additional-item">
+              <b>금주 더시드</b>
+              <span>기록없음</span>
+              <small></small>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- <div id='charbackdiv'>
@@ -33,25 +86,26 @@
          -->
     </div>
     <div id="inputButton">
-      <button id="button" onclick="ggcharImg()">불러오기</button>
+      <button id="button" onclick="getcharacter()">불러오기</button>
       <button id="button1" onclick="partShot()">저장하기</button>
-      <a href="./img/bg.png" download="border">
-        <button id="button1">테두리 다운로드</button>
-      </a>
+      <button id="button1" onclick="saveimg()">다운로드</button>
     </div>
     <div
       id="imgInputdiv"
-      style="background-color: rgb(209, 209, 209); text-shadow: 1px 1px 1px #000"
+      style="
+        background-color: rgb(209, 209, 209);
+        text-shadow: 1px 1px 1px #000;
+      "
     >
       ㆍ배경 색을 한번 바꿔야 적용이 됩니당<br />
       ㆍ화면을 확대하고 저장하면 더욱 화질이 좋아집니다 ㅋㅋ<br />
-      ㆍ캐릭터 이름을 입력해 불러온 후 하단의 이미지들을 불러와주세요<br /><br />
+      <!-- ㆍ캐릭터 이름을 입력해 불러온 후 하단의 이미지들을 불러와주세요<br /><br /> -->
       ㆍ배경 이미지 불러오기
       <input type="file" id="fileInput" onchange="finput(event)" /><br />
-      ㆍ다운로드 받은 테두리 불러오기
-      <input type="file" id="fileInput" onchange="finput3(event)" /><br />
-      ㆍ캐릭터 이미지 불러오기
-      <input type="file" id="fileInput" onchange="finput2(event)" />
+      <!-- ㆍ다운로드 받은 테두리 불러오기
+      <input type="file" id="fileInput" onchange="finput3(event)" /><br /> -->
+      <!-- ㆍ캐릭터 이미지 불러오기
+      <input type="file" id="fileInput" onchange="finput2(event)" /> -->
     </div>
     <div
       id="notice"
@@ -66,7 +120,7 @@
     <div class="w3-col colorthird1" style="text-align: center">
       <div style="margin: auto; width: 236px">
         <div id="bodyColor" style="color: white; text-shadow: 1px 1px 1px #000">
-          배경 색(배경 색은 배경 이미지의 위치를 지정한뒤 설정해주세요)<br /><br />
+          배경 색<br />
           <input
             type="color"
             id="colorPick"
@@ -136,5 +190,12 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+    integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
   <script type="text/javascript" src="./js/maple.js"></script>
 </html>
