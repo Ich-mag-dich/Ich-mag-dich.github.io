@@ -17,7 +17,7 @@ function ggcharImg() {
           el.innerHTML = xmlHttp.responseText;
           var getgg = el.querySelector("#character-card");
           //getgg.style.backgroundColor = "#535353";
-
+          getgg.querySelector(".character-frame").src = "";
           getgg.querySelector("#character-avatar").src = "";
           getgg.querySelector("#character-avatar").onerror = "";
           getgg.querySelector(
