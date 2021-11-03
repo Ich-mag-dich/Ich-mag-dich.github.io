@@ -425,13 +425,23 @@ function getcharacter() {
         }
       }
     };
-    xmlHttp.open(
-      "GET",
-      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=0`
-    );
+    if ($(`input:checkbox[id='reboot']`).is(`:checked`) == false) {
+      xmlHttp.open(
+        "GET",
+        `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=0`
+      );
 
-    xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-    xmlHttp.send(null);
+      xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      xmlHttp.send(null);
+    } else {
+      xmlHttp.open(
+        "GET",
+        `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=254`
+      );
+
+      xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      xmlHttp.send(null);
+    }
   }
 }
 
