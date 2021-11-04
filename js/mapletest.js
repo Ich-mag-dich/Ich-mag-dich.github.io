@@ -216,38 +216,24 @@ function getguild(guildlink, charlevel) {
           el.innerHTML = xmlHttp.responseText;
           try {
             for (i = 1; i <= 10; i++) {
-              if (i <= 3) {
-                if (
-                  el.querySelector(
-                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.rank0${i} > td.left > dl > dt > a`
-                  ).innerText == charName.value
-                ) {
-                  var moofloor = el.querySelector(
-                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.rank0${i} > td:nth-child(4)`
-                  ).innerText;
-                  var mootime = el.querySelector(
-                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr.rank0${i} > td:nth-child(5)`
-                  ).innerText;
-                  document.querySelector(
-                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
-                  ).innerText = moofloor;
-                  document.querySelector(
-                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
-                  ).innerText = mootime;
-                } else {
-                  var moofloor = el.querySelector(
-                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(4)`
-                  ).innerText;
-                  var mootime = el.querySelector(
-                    `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(5)`
-                  ).innerText;
-                  document.querySelector(
-                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
-                  ).innerText = moofloor + "층";
-                  document.querySelector(
-                    "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
-                  ).innerText = mootime;
-                }
+              if (
+                //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(6) > td.left > dl > dt > a")
+                el.querySelector(
+                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td.left > dl > dt > a`
+                ).innerText == charName.value
+              ) {
+                var moofloor = el.querySelector(
+                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(4)`
+                ).innerText;
+                var mootime = el.querySelector(
+                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(5)`
+                ).innerText;
+                document.querySelector(
+                  "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
+                ).innerText = moofloor + "층";
+                document.querySelector(
+                  "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
+                ).innerText = mootime;
               }
             }
           } catch (e) {
@@ -634,21 +620,67 @@ function saveAs(uri, filename) {
   }
 }
 
-function saveimg() {
-  html2canvas($("#character-card")[0], {
-    allowTaint: true,
-    useCORS: true,
-    logging: true,
-    proxy: "html2canvasproxy.php",
-  })
-    .then(canvas => {
-      document.body.appendChild(canvas);
-      saveAs(
-        canvas.toDataURL("image/png"),
-        `${document.getElementById("fname").value}.jpg`
-      );
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
+function saveimg1() {
+  html2canvas(document.getElementById("character-card")).then(function (e) {
+    var i = document.createElement("a");
+    (i.href = e.toDataURL()),
+      (i.download = r),
+      (i.type = "image/png"),
+      document.body.appendChild(i),
+      i.click(),
+      document.body.removeChild(i);
+  });
+}
+function saveimg(e) {
+  var t = $(e.currentTarget),
+    n = new Date(),
+    r = $("#character-avatar"),
+    a = r.data("proxy-url"),
+    o = t.html();
+  t.html('<i class="fas fa-spinner fa-spin"></i>'),
+    r.attr("src", a),
+    window.scrollTo(0, 0),
+    setTimeout(function () {
+      html2canvas(document.getElementById("character-card")).then(function (e) {
+        var r =
+          "" +
+          n.getFullYear() +
+          (n.getMonth() + 1) +
+          n.getDate() +
+          n.getHours() +
+          n.getMinutes() +
+          n.getSeconds();
+        if (window.Android)
+          window.Android.saveCharacterCard(
+            JSON.stringify({
+              url: e.toDataURL(),
+              filename: r,
+            })
+          );
+        else if (
+          window.webkit &&
+          window.webkit.messageHandlers &&
+          window.webkit.messageHandlers.storeCharacterImage
+        )
+          window.webkit.messageHandlers.storeCharacterImage.postMessage(
+            JSON.stringify({
+              url: e.toDataURL(),
+              filename: r,
+            })
+          );
+        else if (e.msToBlob) {
+          var a = e.msToBlob();
+          window.navigator.msSaveBlob(a, r + ".png");
+        } else {
+          var i = document.createElement("a");
+          (i.href = e.toDataURL()),
+            (i.download = r),
+            (i.type = "image/png"),
+            document.body.appendChild(i),
+            i.click(),
+            document.body.removeChild(i);
+        }
+        t.html(o);
+      });
+    }, 100);
 }
