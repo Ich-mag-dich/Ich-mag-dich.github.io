@@ -106,6 +106,50 @@ function theseed() {
   }
 }
 
+function imgToBase64ByFileReaderServer(url) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+      let reader = new FileReader();
+      reader.onloadend = function () {
+        resolve(reader.result);
+        console.log(reader.result);
+        document
+          .getElementById("serverimg1")
+          .setAttribute("src", reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    url1 = `https://cors-anywhere.herokuapp.com/${url}`;
+    xhr.open("GET", url1);
+    xhr.responseType = "blob";
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.send();
+  });
+}
+
+function imgToBase64ByFileReaderChar(url) {
+  return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = () => {
+      let reader = new FileReader();
+      reader.onloadend = function () {
+        resolve(reader.result);
+        console.log(reader.result);
+        document
+          .getElementById("character-avatar")
+          .setAttribute("src", reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    url1 = `https://cors-anywhere.herokuapp.com/${url}`;
+    xhr.open("GET", url1);
+    xhr.responseType = "blob";
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    xhr.send();
+  });
+}
+
 function unionlevelcalc(level) {
   if (level >= 10000) {
     return "그랜드마스터 V";
@@ -354,9 +398,10 @@ function getcharacter() {
               var getcharserverimg = el.querySelector(
                 `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > dl > dt > a > img`
               ).src;
-              document.querySelector(
-                "#character-card > div > ul.character-card-summary > li:nth-child(1) > img"
-              ).src = getcharserverimg;
+              // document.querySelector(
+              //   "#character-card > div > ul.character-card-summary > li:nth-child(1) > img"
+              // ).src = getcharserverimg;
+              imgToBase64ByFileReaderServer(getcharserverimg);
               var charinfo = el.querySelector(
                 `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > dl > dt > a`
               ).href;
@@ -364,13 +409,14 @@ function getcharacter() {
               var getcharImg = el.querySelector(
                 `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td.left > span > img:nth-child(1)`
               ).src;
+              imgToBase64ByFileReaderChar(getcharImg);
               var charguild = el.querySelector(
                 `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${charNum}) > td:nth-child(6)`
               ).innerText;
               document.querySelector(
                 "#character-card > div > div:nth-child(3) > span"
               ).innerText = charguild;
-              document.querySelector("#character-avatar").src = getcharImg;
+              // document.querySelector("#character-avatar").src = getcharImg;
               var levelsnum = el.querySelector(
                 "#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(7) > td:nth-child(1) > p.\\'ranking_other\\'"
               ).innerText;
@@ -590,16 +636,12 @@ function partShot() {
   //   .catch(function (err) {
   //     console.log(err);
   //   });
-  html2canvas(document.getElementById("character-card"), {
-    allowTaint: false,
-    useCORS: true,
-  })
+  html2canvas(document.body)
     .then(canvas => {
       document.body.appendChild(canvas);
-      console.log(url);
       saveAs(
-        canvas.toDataURL(),
-        `${document.getElementById("fname").value}.jpg`
+        canvas.toDataURL("image/png"),
+        `${document.getElementById("fname").value}.png`
       );
     })
     .catch(function (err) {
@@ -608,6 +650,7 @@ function partShot() {
 }
 
 function saveAs(uri, filename) {
+  // 캡쳐된 파일을 이미지 파일로 내보낸다.
   var link = document.createElement("a");
   if (typeof link.download === "string") {
     link.href = uri;
@@ -683,4 +726,23 @@ function saveimg(e) {
         t.html(o);
       });
     }, 100);
+}
+
+function getDataUrl(img) {
+  // Create canvas
+  img = document.querySelector("#base641");
+  img.crossOrigin = "Anonymous";
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  // Set width and height
+  canvas.width = img.width;
+  canvas.height = img.height;
+  // Draw the image
+  ctx.drawImage(img, 0, 0);
+  console.log(canvas.toDataURL);
+
+  var base64 = canvas.toDataURL("image/png");
+  strImage = base64.replace(/^data:image\/[a-z]+;base64,/, "");
+  console.log(strImage);
+  document.getElementById("base64").src = "data:image/png;base64," + strImage;
 }

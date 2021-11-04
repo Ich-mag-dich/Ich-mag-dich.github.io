@@ -21,6 +21,7 @@
         불러오기
       </button> -->
     </div>
+
     <div
       id="imgDiv"
       style="
@@ -30,6 +31,8 @@
         background-color: rgb(209, 209, 209);
       "
     >
+      <img id="base641" alt="" />
+      <img id="base64" alt="" />
       <div id="character-card" class="character-card">
         <img class="character-frame" src="./img/character-frame.svg" />
         <img class="character-background" src="" crossorigin="anonymous" />
@@ -42,7 +45,7 @@
           <div class="character-card-name">이름</div>
           <ul class="character-card-summary">
             <li class="character-card-summary-item">
-              <img src="" style="vertical-align: middle" />
+              <img id="serverimg1" src="" style="vertical-align: middle" />
               <span>서버</span>
             </li>
             <li class="character-card-summary-line"></li>
@@ -94,9 +97,10 @@
     </div>
     <div id="inputButton">
       <button id="button" onclick="getcharacter()">불러오기</button>
-      <button id="button1" onclick="partShot()">저장하기</button>
-      <button id="button1" onclick="saveimg1()">다운로드</button>
+      <button id="button1" onclick="saveimg1()">저장하기</button>
+      <!-- <button id="button1" onclick="imgToBase64ByFileReader()">다운로드</button> -->
     </div>
+
     <div
       id="imgInputdiv"
       style="
