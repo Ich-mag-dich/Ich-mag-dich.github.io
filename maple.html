@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="./img/heart.ico" />
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
-  <body style="background-color: rgb(209, 209, 209)">
+  <body style="background-color: rgb(209, 209, 209)" onload="gethref()">
     <div id="inputName">
       <label for="fname" style="color: white">캐릭터명: </label>
       <input type="text" id="fname" name="fname" />
@@ -35,14 +35,19 @@
       <img id="base64" alt="" />
       <div id="character-card" class="character-card">
         <img class="character-frame" src="./img/character-frame.svg" />
-        <img class="character-background" src="" crossorigin="anonymous" />
+        <img class="character-background" src="./img/back.png" />
         <img
           id="character-avatar"
           class="character-card-image character-image"
           onerror="this.src='';"
         />
         <div class="character-card-content">
-          <div class="character-card-name">이름</div>
+          <div
+            class="character-card-name"
+            style="font-family: 'Hanna', sans-serif"
+          >
+            이름
+          </div>
           <ul class="character-card-summary">
             <li class="character-card-summary-item">
               <img id="serverimg1" src="" style="vertical-align: middle" />
@@ -63,13 +68,14 @@
           </div>
 
           <div class="character-card-popular">
-            <b>랭킹</b>
+            <b>직업랭킹</b>
+            <span></span>
             <span></span>
           </div>
           <img src="./img/card-effect.svg" class="character-card-effect" />
           <ul class="character-card-additional">
             <li class="character-card-additional-item">
-              <b>금주 무릉도장</b>
+              <b>무릉도장</b>
               <span>기록없음</span><br />
               <small></small>
             </li>
@@ -79,7 +85,7 @@
               <small></small>
             </li>
             <li class="character-card-additional-item">
-              <b>금주 더시드</b>
+              <b>더시드</b>
               <span>기록없음</span><br />
               <small></small>
             </li>
@@ -97,7 +103,7 @@
     </div>
     <div id="inputButton">
       <button id="button" onclick="getcharacter()">불러오기</button>
-      <button id="button1" onclick="saveimg1()">저장하기</button>
+      <button id="button1" onclick="partShot()">저장하기</button>
       <!-- <button id="button1" onclick="imgToBase64ByFileReader()">다운로드</button> -->
     </div>
 

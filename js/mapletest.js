@@ -55,7 +55,7 @@ function ggcharImg() {
     xmlHttp.send(null);
   }
 }
-
+/*
 function theseed() {
   if (document.querySelector("#character-card") != null) {
     var charName = document.getElementById("fname");
@@ -105,7 +105,7 @@ function theseed() {
     xmlHttp.send(null);
   }
 }
-
+*/
 function imgToBase64ByFileReaderServer(url) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
@@ -230,7 +230,6 @@ function charunion() {
           } catch (e) {
             console.log(e);
           }
-          theseed();
         }
       }
     };
@@ -256,35 +255,70 @@ function getguild(guildlink, charlevel) {
       if (xmlHttp.readyState === xmlHttp.DONE) {
         if (xmlHttp.status === 200) {
           console.log(xmlHttp.status);
+          xmlHttp.responseText1 = xmlHttp.responseText.replace(
+            /<img/g,
+            "<noload"
+          );
           var el = document.createElement("html");
-          el.innerHTML = xmlHttp.responseText;
+
+          el.innerHTML = xmlHttp.responseText1;
           try {
-            for (i = 1; i <= 10; i++) {
-              if (
-                //document.querySelector("#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(6) > td.left > dl > dt > a")
-                el.querySelector(
-                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td.left > dl > dt > a`
-                ).innerText == charName.value
-              ) {
-                var moofloor = el.querySelector(
-                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(4)`
-                ).innerText;
-                var mootime = el.querySelector(
-                  `#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(${i}) > td:nth-child(5)`
-                ).innerText;
-                document.querySelector(
-                  "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
-                ).innerText = moofloor + "층";
-                document.querySelector(
-                  "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
-                ).innerText = mootime;
-              }
-            }
+            var mooFloor = el.querySelector(".user-summary-floor").innerText;
+            var mooTime = el.querySelector(".user-summary-duration").innerText;
+            mooFloor = mooFloor.replace(
+              "                                                ",
+              ""
+            );
+            mooFloor = mooFloor.replace("\n", "");
+            mooTime = mooTime.replace(" ", "");
+            document.querySelector(
+              "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
+            ).innerText = "최고 " + mooFloor;
+            document.querySelector(
+              "#character-card > div > ul.character-card-additional > li:nth-child(1) > small"
+            ).innerText = mooTime;
+            var charrankW = el.querySelector(
+              "#user-profile > section > div.row.row-normal > div.col-lg-8 > div.row.row-normal.user-additional > div:nth-child(4) > span"
+            ).innerText;
+            var charrank = el.querySelector(
+              "#user-profile > section > div.row.row-normal > div.col-lg-8 > div.row.row-normal.user-additional > div:nth-child(5) > span"
+            ).innerText;
+            document.querySelector(
+              "#character-card > div > div:nth-child(4) > span:nth-child(2)"
+            ).innerText = "월드" + charrankW;
+            document.querySelector(
+              "#character-card > div > div:nth-child(4) > span:nth-child(3)"
+            ).innerText = "(전체 " + charrank + ")";
+            //console.log(charrankW, charrank);
+            //console.log(mooFloor, mooTime);
           } catch (e) {
             console.log(e);
+            console.log("error");
             document.querySelector(
               "#character-card > div > ul.character-card-additional > li:nth-child(1) > span"
             ).innerText = "기록없음";
+          }
+          try {
+            var seedFloor = el.querySelectorAll(
+              ".user-summary-floor.font-weight-bold"
+            )[1].innerText;
+            var seedTime = el.querySelectorAll(".user-summary-duration")[1]
+              .innerText;
+            seedFloor = seedFloor.replace(
+              "                                               ",
+              ""
+            );
+            seedFloor = seedFloor.replace(" ", "");
+            seedFloor = seedFloor.replace("\n", "");
+            document.querySelector(
+              "#character-card > div > ul.character-card-additional > li:nth-child(3) > span"
+            ).innerText = "최고 " + seedFloor;
+            document.querySelector(
+              "#character-card > div > ul.character-card-additional > li:nth-child(3) > small"
+            ).innerText = seedTime;
+            console.log(seedFloor, seedTime);
+          } catch (e) {
+            console.log(e);
           }
           charunion();
         }
@@ -298,9 +332,13 @@ function getguild(guildlink, charlevel) {
       var moo =
         "https://maplestory.nexon.com/Ranking/World/Dojang/ThisWeek?t=0";
     }
+    console.log(`https://maple.gg/u/${charName.value}}`);
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/${moo}&c=${charName.value}&w=0`
+      `https://cors-anywhere.herokuapp.com/https://maple.gg/u/${charName.value}`,
+      true,
+      "",
+      ""
     );
     console.log(charlevel);
     console.log(`${moo}&c=${charName.value}&w=0`);
@@ -417,26 +455,26 @@ function getcharacter() {
                 "#character-card > div > div:nth-child(3) > span"
               ).innerText = charguild;
               // document.querySelector("#character-avatar").src = getcharImg;
-              var levelsnum = el.querySelector(
-                "#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(7) > td:nth-child(1) > p.\\'ranking_other\\'"
-              ).innerText;
-              levelsnum = levelsnum
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-              levelsnum = levelsnum.replace(" ", "");
-              document.querySelector(
-                "#character-card > div > div:nth-child(4) > span:nth-child(2)"
-              ).innerText = `${levelsnum}등`;
-              document.querySelector(
-                "#character-card > div > div:nth-child(4) > span"
-              ).innerHTML = document
-                .querySelector(
-                  "#character-card > div > div:nth-child(4) > span"
-                )
-                .innerHTML.replace(
-                  "                                                   ",
-                  ""
-                );
+              // var levelsnum = el.querySelector(
+              //   "#container > div > div > div:nth-child(4) > div.rank_table_wrap > table > tbody > tr:nth-child(7) > td:nth-child(1) > p.\\'ranking_other\\'"
+              // ).innerText;
+              // levelsnum = levelsnum
+              //   .toString()
+              //   .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              // levelsnum = levelsnum.replace(" ", "");
+              // document.querySelector(
+              //   "#character-card > div > div:nth-child(4) > span:nth-child(2)"
+              // ).innerText = `${levelsnum}등`;
+              // document.querySelector(
+              //   "#character-card > div > div:nth-child(4) > span"
+              // ).innerHTML = document
+              //   .querySelector(
+              //     "#character-card > div > div:nth-child(4) > span"
+              //   )
+              //   .innerHTML.replace(
+              //     "                                                   ",
+              //     ""
+              //   );
               document.querySelector(
                 "#character-card > div > div:nth-child(4) > span"
               ).innerHTML = document
@@ -449,7 +487,14 @@ function getcharacter() {
                   "#character-card > div > div:nth-child(4) > span"
                 ).innerHTML
               );
-              charinfo = charinfo.replace("file:///D:", "");
+              if (document.location.href.includes("file:///D:")) {
+                charinfo = charinfo.replace("file:///D:", "");
+              } else {
+                charinfo = charinfo.replace(
+                  "https://ich-mag-dich.github.io",
+                  ""
+                );
+              }
               console.log(charinfo);
               getcharaterinfo(charinfo, charlevel);
             }
@@ -636,7 +681,7 @@ function partShot() {
   //   .catch(function (err) {
   //     console.log(err);
   //   });
-  html2canvas(document.body)
+  html2canvas(document.getElementById("character-card"))
     .then(canvas => {
       document.body.appendChild(canvas);
       saveAs(
@@ -745,4 +790,9 @@ function getDataUrl(img) {
   strImage = base64.replace(/^data:image\/[a-z]+;base64,/, "");
   console.log(strImage);
   document.getElementById("base64").src = "data:image/png;base64," + strImage;
+}
+
+function gethref() {
+  var link = document.location.href;
+  console.log(link);
 }
