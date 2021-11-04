@@ -603,6 +603,7 @@ function backColorChn(e) {
   if (document.querySelector("#character-card") != null) {
     document.querySelector("#character-card").style.backgroundColor = e;
   }
+  document.querySelector("#imgDiv").style.backgroundColor = e;
 }
 
 function textColorChn(e) {
