@@ -1,33 +1,37 @@
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/index.css">
-  <title>Ich-mag-dich</title>
-  <link rel="shortcut icon" href="./img/heart.ico" />
-  <script type="text/javascript" src="./js/index.js"></script>
-</head>
-<body onLoad="initClock()">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Ich-mag-dich</title>
+    <link rel="shortcut icon" href="./img/heart.ico" />
+    <script type="text/javascript" src="./js/index.js"></script>
+  </head>
+  <body onLoad="initClock()">
     <div id="timedate">
       <a id="y">0</a><br />
       <a id="mon">January</a>
       <a id="d">1</a><br />
-      <a id="h">12</a> :
-      <a id="m">00</a> :
+      <a id="h">12</a> : <a id="m">00</a> :
       <a id="s">00</a>
       <a id="mi">000</a>
     </div>
-    <div id='stopwatch'>
-      <a id='sth'>0</a> :
-      <a id='stm'>0</a> :
-      <a id='sts'>0</a> <br>
-      <button id='button' onclick="watchStart()">Start</button>
-      <button id='button' onclick="watchClear()">Clear</button>
+    <div id="stopwatch">
+      <a id="sth">0</a> : <a id="stm">0</a> : <a id="sts">0</a> <br />
+      <button id="button" onclick="watchStart()">Start</button>
+      <button id="button" onclick="watchClear()">Clear</button>
     </div>
-    <div id='maple' onclick="javascript:location.href='./maple.html'">
-      <img src="./img/maple.png" alt="메이플 증명사진!">
+    <div id="img">
+      <img
+        src="./img/maple.png"
+        onclick="javascript:location.href='./maple.html'"
+        alt="메이플 증명사진!"
+      />
+      <img
+        src="./img/tdn.png"
+        onclick="javascript:location.href='./to-do-list.html'"
+        alt="To Do List"
+      />
     </div>
-
-</body>
+  </body>
 </html>
