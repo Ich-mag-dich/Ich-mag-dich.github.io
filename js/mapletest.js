@@ -49,7 +49,7 @@ function ggcharImg() {
     };
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/https://maple.gg/u/${charName.value}`
+      `https://api.allorigins.win/raw?url=https://maple.gg/u/${charName.value}`
     );
     xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlHttp.send(null);
@@ -99,7 +99,7 @@ function theseed() {
     };
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Seed/ThisWeek?c=${charName.value}&w=0`
+      `https://api.allorigins.win/raw?url=https://maplestory.nexon.com/Ranking/World/Seed/ThisWeek?c=${charName.value}&w=0`
     );
     xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlHttp.send(null);
@@ -120,7 +120,7 @@ function imgToBase64ByFileReaderServer(url) {
       };
       reader.readAsDataURL(xhr.response);
     };
-    url1 = `https://cors-anywhere.herokuapp.com/${url}`;
+    url1 = `https://api.allorigins.win/raw?url=${url}`;
     xhr.open("GET", url1);
     xhr.responseType = "blob";
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -142,7 +142,7 @@ function imgToBase64ByFileReaderChar(url) {
       };
       reader.readAsDataURL(xhr.response);
     };
-    url1 = `https://cors-anywhere.herokuapp.com/${url}`;
+    url1 = `https://api.allorigins.win/raw?url=${url}`;
     xhr.open("GET", url1);
     xhr.responseType = "blob";
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -235,7 +235,7 @@ function charunion() {
     };
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/Union?c=${charName.value}&w=0`
+      `https://api.allorigins.win/raw?url=https://maplestory.nexon.com/Ranking/Union?c=${charName.value}&w=0`
     );
     xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlHttp.send(null);
@@ -335,7 +335,7 @@ function getguild(guildlink, charlevel) {
     console.log(`https://maple.gg/u/${charName.value}}`);
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/https://maple.gg/u/${charName.value}`,
+      `https://api.allorigins.win/raw?url=https://maple.gg/u/${charName.value}`,
       true,
       "",
       ""
@@ -362,9 +362,7 @@ function getcharaterinfo(charinfo, charlevel) {
           console.log(xmlHttp.status);
           var el = document.createElement("html");
           el.innerHTML = xmlHttp.responseText;
-          var charpop = el.querySelector(
-            "#wrap > div.center_wrap > div.char_info_top > div.char_info > div.level_data > span.pop_data"
-          ).innerText;
+          var charpop = el.querySelector(".pop_data").innerText;
           charpop = charpop.replace("인기도", "");
           document.querySelector(
             "#character-card > div > div:nth-child(3) > d"
@@ -505,7 +503,7 @@ function getcharacter() {
     if ($(`input:checkbox[id='reboot']`).is(`:checked`) == false) {
       xmlHttp.open(
         "GET",
-        `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=0`
+        `https://api.allorigins.win/raw?url=https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=0`
       );
 
       xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -513,7 +511,7 @@ function getcharacter() {
     } else {
       xmlHttp.open(
         "GET",
-        `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=254`
+        `https://api.allorigins.win/raw?url=https://maplestory.nexon.com/Ranking/World/Total?c=${charName.value}&w=254`
       );
 
       xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
