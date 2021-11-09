@@ -347,6 +347,41 @@ function getguild(guildlink, charlevel) {
   }
 }
 
+function newgetcharinfo(charinfo, charlevel) {
+  // with fetch
+  fetch(
+    `https://api.allorigins.win/get?url=${encodeURIComponent(
+      `https://maplestory.nexon.com${charinfo}`
+    )}`
+  )
+    .then(response => {
+      if (response.ok) return response.json();
+      throw new Error("Network response was not ok.");
+    })
+    .then(data => {
+      var el = document.createElement("html");
+      el.innerHTML = data.contents;
+      var charpop = el.querySelector(
+        "#wrap > div.center_wrap > div.char_info_top > div.char_info > div.level_data > span.pop_data"
+      ).innerText;
+      charpop = charpop.replace("인기도", "");
+      document.querySelector(
+        "#character-card > div > div:nth-child(3) > d"
+      ).innerText = charpop;
+      var charservername = el.querySelector(
+        "#wrap > div.center_wrap > div.char_info_top > div.char_info > dl:nth-child(3) > dd"
+      ).innerText;
+      document.querySelector(
+        "#character-card > div > ul.character-card-summary > li:nth-child(1) > span"
+      ).innerText = charservername;
+      var guildlink = el.querySelector(
+        "#container > div.con_wrap > div.lnb_wrap > ul > li.on > a"
+      ).href;
+      guildlink = guildlink.replace("file:///D:", "");
+      getguild(guildlink, charlevel);
+    });
+}
+
 function getcharaterinfo(charinfo, charlevel) {
   if (document.querySelector("#character-card") != null) {
     var charName = document.getElementById("fname");
@@ -383,7 +418,7 @@ function getcharaterinfo(charinfo, charlevel) {
     };
     xmlHttp.open(
       "GET",
-      `https://cors-anywhere.herokuapp.com/https://maplestory.nexon.com${charinfo}`
+      `http://api.allorigins.win/raw?url=http://maplestory.nexon.com${charinfo}`
     );
     xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlHttp.send(null);
@@ -494,7 +529,8 @@ function getcharacter() {
                 );
               }
               console.log(charinfo);
-              getcharaterinfo(charinfo, charlevel);
+              //getcharaterinfo(charinfo, charlevel);
+              newgetcharinfo(charinfo, charlevel);
             }
           }
         }
