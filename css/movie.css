@@ -1,0 +1,36 @@
+body {
+  background-color: #474747;
+}
+
+#pageName {
+  color: #ffffff;
+  background-color: #ff5757;
+  max-width: auto;
+  display: inline-block;
+  margin-top: -10px;
+}
+
+header {
+  background-color: #ff5757;
+  position: sticky;
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-right: -8px;
+  top: 0px;
+}
+
+.testDiv {
+  float: right;
+  display: inline;
+  margin-right: 20px;
+  background-color: #ff5757;
+  font-size: 50px;
+  color: #ffffff;
+  margin-top: -10px;
+}
+
+#contents {
+  background-color: #ffffff;
+  height: 100%;
+  margin: 0 auto;
+}
