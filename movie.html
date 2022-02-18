@@ -23,34 +23,34 @@
   <body>
       <div id="contents" style="width: 50%;">
           <div id="nowInTheaters" style="position: relative;">
-            <div id="nowtext" style="position: relative; display: flex; ">
+            <div id="nowtext" style="text-align: center; margin-top: 50px; margin-bottom: 100px; font-size: xx-large; font-weight: bold;">
               상영중인 영화
             </div>
 
 
-            <div class="posterwrap" >
+            <div class="posterwrap" onclick="ticketBuyWindow(0)" >
               <div style="position: relative;">
                 <img class="poster" src="./img/deadpoetssociety.png" style="width: 200px" />
               </div>
-              <div class="movieName" style="display: flex;">
+              <div class="movieName" style="display: flex; font-weight: bold;">
                 죽은 시인의 사회
               </div> 
             </div>
 
-            <div class="posterwrap" >
+            <div class="posterwrap" onclick="ticketBuyWindow(1)" >
               <div style="position: relative;">
                 <img class="poster" src="./img/shutterisland.png" style="width: 200px" />
               </div>
-              <div class="movieName" style="display: flex;">
+              <div class="movieName" style="display: flex; font-weight: bold;">
                 셔터아일랜드
               </div> 
             </div>
 
-            <div class="posterwrap" >
+            <div class="posterwrap" onclick="ticketBuyWindow(2)" >
               <div style="position: relative;">
                 <img class="poster" src="./img/goodwillhunting.png" style="width: 200px" />
               </div>
-              <div class="movieName" style="display: flex;">
+              <div class="movieName" style="display: flex; font-weight: bold;">
                 굿 윌 헌팅
               </div> 
             </div>
@@ -73,6 +73,7 @@ if (contentsWidth >= 600) {
     posterwrap[i].style.marginLeft = foo;
     poster[i].style.width = 200;
     movieName[i].style.fontSize = "large"
+    movieName[i].style.width = poster[i].style.width;
   }
 } else if (contentsWidth >= 500) {
     let foo = (contentsWidth - 450) / 4;
@@ -80,6 +81,7 @@ if (contentsWidth >= 600) {
       poster[i].style.width = 150;
       posterwrap[i].style.marginLeft = foo;
       movieName[i].style.fontSize = "large"
+      movieName[i].style.width = poster[i].style.width;
     }
 } else if (contentsWidth >= 400) {
     let foo = (contentsWidth - 360) / 4;
@@ -87,6 +89,7 @@ if (contentsWidth >= 600) {
       poster[i].style.width = 120;
       posterwrap[i].style.marginLeft = foo;
       movieName[i].style.fontSize = "large"
+      movieName[i].style.width = poster[i].style.width;
     }
   } else {
     let foo = (contentsWidth - 240) / 4;
@@ -94,6 +97,7 @@ if (contentsWidth >= 600) {
       poster[i].style.width = 80;
       posterwrap[i].style.marginLeft = foo;
       movieName[i].style.fontSize = "small"
+      movieName[i].style.width = poster[i].style.width;
     }
   }
     </script>

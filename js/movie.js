@@ -18,6 +18,7 @@ function checksize() {
       posterwrap[i].style.marginLeft = foo;
       poster[i].style.width = 200;
       movieName[i].style.fontSize = "large";
+      movieName[i].style.width = poster[i].style.width;
     }
   } else if (contentsWidth >= 500) {
     let foo = (contentsWidth - 450) / 4;
@@ -25,6 +26,7 @@ function checksize() {
       poster[i].style.width = 150;
       posterwrap[i].style.marginLeft = foo;
       movieName[i].style.fontSize = "large";
+      movieName[i].style.width = poster[i].style.width;
     }
   } else if (contentsWidth >= 400) {
     let foo = (contentsWidth - 360) / 4;
@@ -32,6 +34,7 @@ function checksize() {
       poster[i].style.width = 120;
       posterwrap[i].style.marginLeft = foo;
       movieName[i].style.fontSize = "large";
+      movieName[i].style.width = poster[i].style.width;
     }
   } else {
     let foo = (contentsWidth - 240) / 4;
@@ -39,6 +42,7 @@ function checksize() {
       poster[i].style.width = 80;
       posterwrap[i].style.marginLeft = foo;
       movieName[i].style.fontSize = "small";
+      movieName[i].style.width = poster[i].style.width;
     }
   }
 
@@ -71,3 +75,9 @@ function checksize() {
     }
   }
 }
+
+// 0 = 죽은 시인의 사회
+// 1 = 셔터아일랜드
+// 2 = 굿 윌 헌팅
+
+function ticketBuyWindow(num) {}
