@@ -4,6 +4,31 @@ let testDiv = document.getElementsByClassName("testDiv");
 function checksize() {
   let elements = document.getElementById("contents");
   console.log(window.innerWidth);
+
+  let posterwrap = document.getElementsByClassName("posterwrap");
+  let contentsWidth = document.getElementById("contents").clientWidth;
+  let poster = document.getElementsByClassName("poster");
+  //console.log("contents width: ", contentsWidth);
+  if (contentsWidth >= 600) {
+    let foo = (contentsWidth - 600) / 4;
+    for (i = 0; i < posterwrap.length; i++) {
+      posterwrap[i].style.marginLeft = foo;
+      poster[i].style.width = 200;
+    }
+  } else if (contentsWidth >= 500) {
+    let foo = (contentsWidth - 450) / 4;
+    for (i = 0; i < posterwrap.length; i++) {
+      poster[i].style.width = 150;
+      posterwrap[i].style.marginLeft = foo;
+    }
+  } else {
+    let foo = (contentsWidth - 360) / 4;
+    for (i = 0; i < posterwrap.length; i++) {
+      poster[i].style.width = 120;
+      posterwrap[i].style.marginLeft = foo;
+    }
+  }
+
   if (window.innerWidth < 1000) {
     if (checkbool === false) {
       elements.style.width = "100%";

@@ -22,15 +22,69 @@
   </header>
   <body>
       <div id="contents" style="width: 50%;">
-          <div id="nowInTheaters" style="text-align: center;">
-            <img src="./img/cinema.png" style="width: 400px" />
-            <img src="./img/cinema.png" style="width: 400px" />
-            <img src="./img/cinema.png" style="width: 400px" />
-            <img src="./img/cinema.png" style="width: 400px" />
+          <div id="nowInTheaters" style="position: relative;">
+            <div id="nowtext" style="position: relative; display: flex; ">
+              상영중인 영화
+            </div>
+
+
+            <div class="posterwrap" >
+              <div style="position: relative;">
+                <img class="poster" src="./img/deadpoetssociety.png" style="width: 200px" />
+              </div>
+              <div style="display: flex;">
+                죽은 시인의 사회
+              </div> 
+            </div>
+
+            <div class="posterwrap" >
+              <div style="position: relative;">
+                <img class="poster" src="./img/shutterisland.png" style="width: 200px" />
+              </div>
+              <div style="display: flex;">
+                셔터아일랜드
+              </div> 
+            </div>
+
+            <div class="posterwrap" >
+              <div style="position: relative;">
+                <img class="poster" src="./img/goodwillhunting.png" style="width: 200px" />
+              </div>
+              <div style="display: flex;">
+                굿 윌 헌팅
+              </div> 
+            </div>
+
+            
           </div>
       </div>
     <script type="text/javascript">
+      checksize();
         window.addEventListener("resize", checksize);
+        let posterwrap = document.getElementsByClassName("posterwrap");
+let contentsWidth = document.getElementById("contents").clientWidth;
+let poster = document.getElementsByClassName("poster");
+console.log(contentsWidth);
+//console.log("contents width: ", contentsWidth);
+if (contentsWidth >= 600) {
+  let foo = (contentsWidth - 600) / 4;
+  for (i = 0; i < posterwrap.length; i++) {
+    posterwrap[i].style.marginLeft = foo;
+    poster[i].style.width = 200;
+  }
+} else if (contentsWidth >= 500) {
+  let foo = (contentsWidth - 450) / 4;
+  for (i = 0; i < posterwrap.length; i++) {
+    poster[i].style.width = 150;
+    posterwrap[i].style.marginLeft = foo;
+  }
+} else {
+  let foo = (contentsWidth - 360) / 4;
+  for (i = 0; i < posterwrap.length; i++) {
+    poster[i].style.width = 120;
+    posterwrap[i].style.marginLeft = foo;
+  }
+}
     </script>
   </body>
 </html>
