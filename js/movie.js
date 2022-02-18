@@ -9,23 +9,36 @@ function checksize() {
   let contentsWidth = document.getElementById("contents").clientWidth;
   let poster = document.getElementsByClassName("poster");
   //console.log("contents width: ", contentsWidth);
+  let movieName = document.getElementsByClassName("movieName");
+  console.log(contentsWidth);
+  //console.log("contents width: ", contentsWidth);
   if (contentsWidth >= 600) {
     let foo = (contentsWidth - 600) / 4;
     for (i = 0; i < posterwrap.length; i++) {
       posterwrap[i].style.marginLeft = foo;
       poster[i].style.width = 200;
+      movieName[i].style.fontSize = "large";
     }
   } else if (contentsWidth >= 500) {
     let foo = (contentsWidth - 450) / 4;
     for (i = 0; i < posterwrap.length; i++) {
       poster[i].style.width = 150;
       posterwrap[i].style.marginLeft = foo;
+      movieName[i].style.fontSize = "large";
     }
-  } else {
+  } else if (contentsWidth >= 400) {
     let foo = (contentsWidth - 360) / 4;
     for (i = 0; i < posterwrap.length; i++) {
       poster[i].style.width = 120;
       posterwrap[i].style.marginLeft = foo;
+      movieName[i].style.fontSize = "large";
+    }
+  } else {
+    let foo = (contentsWidth - 240) / 4;
+    for (i = 0; i < posterwrap.length; i++) {
+      poster[i].style.width = 80;
+      posterwrap[i].style.marginLeft = foo;
+      movieName[i].style.fontSize = "small";
     }
   }
 
