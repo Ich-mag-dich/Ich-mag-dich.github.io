@@ -3,105 +3,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/movie.css" />
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <title>Movie ticket</title>
     <link rel="shortcut icon" href="./img/heart.ico" />
     <script type="text/javascript" src="./js/movie.js"></script>
   </head>
   <header>
-    <div id="pageName" style="font-size: 50px;">
-        &nbsp;I LIKE MOVIE!&nbsp;
-    </div>
-    <div class="testDiv">
-        A
-    </div>
-    <div class="testDiv">
-        B
-    </div>
+    <div id="pageName" style="font-size: 50px">&nbsp;Test&nbsp;</div>
+    <div class="testDiv">A</div>
+    <div class="testDiv">B</div>
   </header>
   <body>
-      <div id="contents" style="width: 50%;">
-          <div id="nowInTheaters" style="position: relative;">
-            <div id="nowtext" style="text-align: center; margin-top: 50px; margin-bottom: 100px; font-size: xx-large; font-weight: bold;">
-              상영중인 영화
-            </div>
+    <div id="contents" style="width: 50%">
+      <div id="nowInTheaters" style="position: relative">
+        <div
+          id="nowtext"
+          style="
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 100px;
+            font-size: xx-large;
+            font-weight: bold;
+          "
+        >
+          list
+        </div>
 
-
-            <div class="posterwrap" onclick="ticketBuyWindow(0)" >
-              <div style="position: relative;">
-                <img class="poster" src="./img/deadpoetssociety.png" style="width: 200px" />
-              </div>
-              <div class="movieName" style="display: flex; font-weight: bold;">
-                죽은 시인의 사회
-              </div> 
-            </div>
-
-            <div class="posterwrap" onclick="ticketBuyWindow(1)" >
-              <div style="position: relative;">
-                <img class="poster" src="./img/shutterisland.png" style="width: 200px" />
-              </div>
-              <div class="movieName" style="display: flex; font-weight: bold;">
-                셔터아일랜드
-              </div> 
-            </div>
-
-            <div class="posterwrap" onclick="ticketBuyWindow(2)" >
-              <div style="position: relative;">
-                <img class="poster" src="./img/goodwillhunting.png" style="width: 200px" />
-              </div>
-              <div class="movieName" style="display: flex; font-weight: bold;">
-                굿 윌 헌팅
-              </div> 
-            </div>
-
-            
+        <div class="posterwrap" onclick="ticketBuyWindow(0)">
+          <div style="position: relative">
+            <img
+              class="poster"
+              src="./img/deadpoetssociety.png"
+              style="width: 200px"
+            />
           </div>
+          <div class="movieName" style="display: flex; font-weight: bold">
+            죽은 시인의 사회
+          </div>
+        </div>
+
+        <div class="posterwrap" onclick="ticketBuyWindow(1)">
+          <div style="position: relative">
+            <img
+              class="poster"
+              src="./img/shutterisland.png"
+              style="width: 200px"
+            />
+          </div>
+          <div class="movieName" style="display: flex; font-weight: bold">
+            셔터아일랜드
+          </div>
+        </div>
+
+        <div class="posterwrap" onclick="ticketBuyWindow(2)">
+          <div style="position: relative">
+            <img
+              class="poster"
+              src="./img/goodwillhunting.png"
+              style="width: 200px"
+            />
+          </div>
+          <div class="movieName" style="display: flex; font-weight: bold">
+            굿 윌 헌팅
+          </div>
+        </div>
       </div>
+    </div>
     <script type="text/javascript">
       checksize();
-        window.addEventListener("resize", checksize);
-        let posterwrap = document.getElementsByClassName("posterwrap");
-let contentsWidth = document.getElementById("contents").clientWidth;
-let poster = document.getElementsByClassName("poster");
-let movieName = document.getElementsByClassName("movieName");
-console.log(contentsWidth);
-//console.log("contents width: ", contentsWidth);
-if (contentsWidth >= 600) {
-  let foo = (contentsWidth - 600) / 4;
-  for (i = 0; i < posterwrap.length; i++) {
-    posterwrap[i].style.marginLeft = foo;
-    poster[i].style.width = 200;
-    movieName[i].style.fontSize = "large"
-    movieName[i].style.width = poster[i].style.width;
-  }
-} else if (contentsWidth >= 500) {
-    let foo = (contentsWidth - 450) / 4;
-    for (i = 0; i < posterwrap.length; i++) {
-      poster[i].style.width = 150;
-      posterwrap[i].style.marginLeft = foo;
-      movieName[i].style.fontSize = "large"
-      movieName[i].style.width = poster[i].style.width;
-    }
-} else if (contentsWidth >= 400) {
-    let foo = (contentsWidth - 360) / 4;
-    for (i = 0; i < posterwrap.length; i++) {
-      poster[i].style.width = 120;
-      posterwrap[i].style.marginLeft = foo;
-      movieName[i].style.fontSize = "large"
-      movieName[i].style.width = poster[i].style.width;
-    }
-  } else {
-    let foo = (contentsWidth - 240) / 4;
-    for (i = 0; i < posterwrap.length; i++) {
-      poster[i].style.width = 80;
-      posterwrap[i].style.marginLeft = foo;
-      movieName[i].style.fontSize = "small"
-      movieName[i].style.width = poster[i].style.width;
-    }
-  }
+      window.addEventListener("resize", checksize);
+      let posterwrap = document.getElementsByClassName("posterwrap");
+      let contentsWidth = document.getElementById("contents").clientWidth;
+      let poster = document.getElementsByClassName("poster");
+      let movieName = document.getElementsByClassName("movieName");
+      console.log(contentsWidth);
+      //console.log("contents width: ", contentsWidth);
+      if (contentsWidth >= 600) {
+        let foo = (contentsWidth - 600) / 4;
+        for (i = 0; i < posterwrap.length; i++) {
+          posterwrap[i].style.marginLeft = foo;
+          poster[i].style.width = 200;
+          movieName[i].style.fontSize = "large";
+          movieName[i].style.width = poster[i].style.width;
+        }
+      } else if (contentsWidth >= 500) {
+        let foo = (contentsWidth - 450) / 4;
+        for (i = 0; i < posterwrap.length; i++) {
+          poster[i].style.width = 150;
+          posterwrap[i].style.marginLeft = foo;
+          movieName[i].style.fontSize = "large";
+          movieName[i].style.width = poster[i].style.width;
+        }
+      } else if (contentsWidth >= 400) {
+        let foo = (contentsWidth - 360) / 4;
+        for (i = 0; i < posterwrap.length; i++) {
+          poster[i].style.width = 120;
+          posterwrap[i].style.marginLeft = foo;
+          movieName[i].style.fontSize = "large";
+          movieName[i].style.width = poster[i].style.width;
+        }
+      } else {
+        let foo = (contentsWidth - 240) / 4;
+        for (i = 0; i < posterwrap.length; i++) {
+          poster[i].style.width = 80;
+          posterwrap[i].style.marginLeft = foo;
+          movieName[i].style.fontSize = "small";
+          movieName[i].style.width = poster[i].style.width;
+        }
+      }
     </script>
   </body>
 </html>
-
-

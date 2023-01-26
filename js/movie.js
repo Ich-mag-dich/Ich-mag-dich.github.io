@@ -80,4 +80,6 @@ function checksize() {
 // 1 = 셔터아일랜드
 // 2 = 굿 윌 헌팅
 
-function ticketBuyWindow(num) {}
+function ticketBuyWindow(num) {
+  alert(num);
+}
